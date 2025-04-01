@@ -5,7 +5,8 @@ import { Exchange } from 'src/coingecko/types/exchange';
 @Injectable()
 export class BlockchainService {
   constructor(private readonly coingeckoService: CoingeckoService) {}
-  async getExchanges(): Promise<Exchange[]> {
-    return this.coingeckoService.getExchanges();
+
+  async getExchanges(page: number, perPage: number): Promise<Exchange[]> {
+    return this.coingeckoService.getExchanges(page, perPage);
   }
 }

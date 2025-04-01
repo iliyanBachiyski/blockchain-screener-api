@@ -15,11 +15,15 @@ export class CoingeckoService {
     this.API_KEY = this.configService.get('COINGECKO_API_KEY', '');
   }
 
-  async getExchanges() {
+  async getExchanges(page: number, perPage: number) {
     const response = await this.httpService.axiosRef.get<Exchange[]>(
       `${this.coingeckoApiUrl}/exchanges`,
       {
         headers: { 'x-cg-demo-api-key': this.API_KEY },
+        params: {
+          page,
+          per_page: perPage,
+        },
       },
     );
     return response.data;
