@@ -7,7 +7,7 @@ export class BlockchainController {
   @Get('exchanges')
   getExchanges(
     @Query('page') page: number = 1,
-    @Query('perPage') perPage: number = 100,
+    @Query('perPage') perPage: number = 50,
   ): Promise<Exchange[]> {
     return this.blockchainService.getExchanges(page, perPage);
   }
