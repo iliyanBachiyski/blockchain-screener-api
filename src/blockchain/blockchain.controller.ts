@@ -1,13 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-
+import { BlockchainService } from './blockchain.service';
+import { Exchange } from 'src/coingecko/types/exchange';
 @Controller('blockchain')
 export class BlockchainController {
-  @Get()
-  sayHello(): string {
-    return 'Hello World';
-  }
+  constructor(private readonly blockchainService: BlockchainService) {}
   @Get('exchanges')
-  getExchanges(): string {
-    return 'Exchanges';
+  getExchanges(): Promise<Exchange[]> {
+    return this.blockchainService.getExchanges();
   }
 }
